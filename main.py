@@ -66,7 +66,9 @@ async def roll(ctx):
 @bot.command()
 async def bark(ctx):
     await ctx.send("gheu gheu gheu .......")   
-
+@bot.command()
+async def bapan(ctx):
+    await ctx.send("jani bapan bokachoda .......")
 
 @bot.command()
 async def tousif_ar_bou(ctx):
