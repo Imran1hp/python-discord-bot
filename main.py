@@ -3,6 +3,7 @@ from discord.ext import commands
 import logging
 from dotenv import load_dotenv
 import os
+import random
 
 load_dotenv()
 token =os.getenv('DISCORD_TOKEN')
@@ -17,11 +18,14 @@ bot = commands.Bot(command_prefix='!',intents=intents)
 secret_role ="Tousif ar bou"
 @bot.event
 async def on_ready():
-    print(f"We are ready to go {bot.user.name}")
+    print(f" {bot.user.name} is runing")
 @bot.event
 async def on_member_join(member):
     await member.send(f'Welcome to the server {member.name}!')
-
+@bot.event
+async def on_member_remove(member):
+    print(f"{member.name}has left the server")
+    
 
 @bot.event
 async def on_message(message):
@@ -37,6 +41,30 @@ async def on_message(message):
 @bot.command()
 async def hello(ctx):
     await ctx.send(f"Hello bsdk {ctx.author.name}")
+
+@bot.command()    
+async def ping(ctx):
+    await ctx.send(f"Pong! {round(bot.latency*1000)}ms")
+
+@bot.command()
+async def about(ctx):
+    await ctx.send("I am a discord bot make by Imran....\nAnd he said i am a dog from usthi.... ")
+
+@bot.command()
+async def userinfo(ctx,member:discord.Member):
+    await ctx.send(f"Name:{member.name}\nID:{member.id}\nJoined at:{member.joined_at}")
+
+@bot.command()
+async def avatar(ctx,member:discord.Member):
+    await ctx.send(member.display_avatar.url)
+
+@bot.command()
+async def roll(ctx):
+    await ctx.send(f"You got {random.randint(1,6)}")    
+
+@bot.command()
+async def bark(ctx):
+    await ctx.send("gheu gheu gheu .......")   
 
 
 @bot.command()
