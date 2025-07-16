@@ -4,6 +4,7 @@ import logging
 from dotenv import load_dotenv
 import os
 import random
+import webserver
 
 load_dotenv()
 token =os.getenv('DISCORD_TOKEN')
@@ -86,7 +87,7 @@ async def tousif_talak(ctx):
     else:
         await ctx.send(f"Role {secret_role} does not exist")    
 
-
+webserver.keep_alive()
 
 bot.run(token,log_handler=handler,log_level=logging.DEBUG)
 
